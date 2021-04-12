@@ -7,12 +7,11 @@ const app = express();
 
 const main = async() => {
   app.use(express.json())
-  app.use(
-    cors({
-      origin: 'http://localhost:3000',
-      credentials: true
-    })
-  );
+  app.use(cors());
+  
+  app.get('/', (_, res) => {
+    res.send("Connected!!")
+  });
   
   app.post('/register', async (req, res): Promise<User> => {
     const { name, email, password } = req.body;
